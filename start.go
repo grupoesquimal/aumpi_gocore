@@ -10,7 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func start(cfg Configuration) {
+func Start(cfg Configuration) {
 	gin.SetMode(os.Getenv("APP_MODE"))
 	log.SetLevel(log.TraceLevel)
 
