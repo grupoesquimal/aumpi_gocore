@@ -1,0 +1,1 @@
+aumpi_gocore
