@@ -1,0 +1,1 @@
+package aumpi_core
