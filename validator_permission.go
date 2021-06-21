@@ -42,7 +42,16 @@ func PermissionsValidator() gin.HandlerFunc {
 		if role.Permissions == "*" {
 			c.Next()
 			return
-		} else if strings.Contains(role.Permissions, permission.Pid.String()) {
+		}
+
+		// VALIDAR SI LA RUTA ES DE TIPO SELF
+		if permission.Self {
+			c.Next()
+			return
+		}
+
+		// VALIDAR SI EL USUARIO TIENE ACCESO A LA RUTA SOLICITADA
+		if strings.Contains(role.Permissions, permission.Pid.String()) {
 			c.Next()
 			return
 		}

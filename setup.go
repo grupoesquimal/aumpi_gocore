@@ -87,6 +87,7 @@ func createPermissions(routes []Routes, db *gorm.DB) {
 				Pid:         pid,
 				Name:        route.Name,
 				Description: route.Description,
+				Self:        route.Self,
 				Path:        route.Path,
 				Method:      route.Method,
 			})

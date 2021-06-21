@@ -19,20 +19,22 @@ type Configuration struct {
 
 //Routes is
 type Routes struct {
-	Name        string
-	Description string
-	Path        string
-	Method      string
-	Function    gin.HandlerFunc
+	Name        string          // Nombre del permiso
+	Description string          // Descripcion corta de lo que hace la ruta
+	Self        bool            // Poner en true si el controlador tiene acceso unicamente a informacion del usuario que solicito la peticion por ejemplo sus permisos, sus leads, su actividad
+	Path        string          // Ruta en la que respondera el controlador
+	Method      string          // Metodo en el que respondera el controlador
+	Function    gin.HandlerFunc // Controlador asociado a la ruta
 }
 
 //Permissions is
 type Permissions struct {
 	Pid         uuid.UUID `gorm:"primaryKey;type:uuid"`
-	Name        string
-	Description string
-	Path        string
-	Method      string
+	Name        string    // Nombre del permiso
+	Description string    // Descripcion corta de lo que hace la ruta
+	Self        bool      // Poner en true si el controlador tiene acceso unicamente a informacion del usuario que solicito la peticion por ejemplo sus permisos, sus leads, su actividad
+	Path        string    // Ruta en la que respondera el controlador
+	Method      string    // Metodo en el que respondera el controlador
 }
 
 //Roles is
