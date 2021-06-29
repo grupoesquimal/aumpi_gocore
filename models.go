@@ -41,11 +41,12 @@ type Permissions struct {
 
 //Roles is
 type Roles struct {
-	Rid         uuid.UUID `gorm:"primaryKey;type:uuid"`
-	Name        string    `gorm:"type:varchar(25)"`
-	Description string    `gorm:"type:varchar(70)"`
-	Permissions string    `gorm:"type:text"`
-	Editable    bool
+	Rid            uuid.UUID `gorm:"primaryKey;type:uuid"`
+	Name           string    `gorm:"type:varchar(25)"`
+	Description    string    `gorm:"type:varchar(70)"`
+	Permissions    string    `gorm:"type:text"`
+	PermissionsWeb string    `gorm:"type:text"`
+	Editable       bool
 }
 
 //ConfigVars is
