@@ -10,6 +10,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
 //SetupModels is
@@ -24,8 +25,13 @@ func SetupModels(cfg Configuration) *gorm.DB {
 	log.Debug(dbUri)
 
 	db, err := gorm.Open(postgres.Open(dbUri), &gorm.Config{
+
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+		},
 		Logger: logger.Default.LogMode(logger.Silent),
 	})
+
 	if err != nil {
 		log.Fatal(err)
 	}
