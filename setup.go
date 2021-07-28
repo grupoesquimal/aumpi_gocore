@@ -88,11 +88,10 @@ func createPermissions(routes []SystemRoutes, db *gorm.DB) {
 		}
 
 		if db.First(&SystemPermissions{}, "path = ? AND method = ?", route.Path, route.Method).RowsAffected == 0 {
-			log.Debug("Creando permiso: " + route.Name)
+			log.Debug("Creando permiso: " + route.Description)
 			pid := uuid.New()
 			db.Create(&SystemPermissions{
 				Pid:         pid,
-				Name:        route.Name,
 				Description: route.Description,
 				Category:    route.Category,
 				Self:        route.Self,

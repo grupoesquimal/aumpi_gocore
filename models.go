@@ -25,7 +25,6 @@ type Cronjob struct {
 
 //Routes is
 type SystemRoutes struct {
-	Name        string          // Nombre del permiso
 	Description string          // Descripcion corta de lo que hace la ruta
 	Category    string          // Categoria de la ruta de separado por >
 	Self        bool            // Poner en true si el controlador tiene acceso unicamente a informacion del usuario que solicito la peticion por ejemplo sus permisos, sus leads, su actividad
@@ -37,7 +36,6 @@ type SystemRoutes struct {
 //Permissions is
 type SystemPermissions struct {
 	Pid         uuid.UUID `gorm:"primaryKey;type:uuid"`
-	Name        string    // Nombre del permiso
 	Description string    // Descripcion corta de lo que hace la ruta
 	Category    string    // Categoria de la ruta de separado por >
 	Self        bool      // Poner en true si el controlador tiene acceso unicamente a informacion del usuario que solicito la peticion por ejemplo sus permisos, sus leads, su actividad
