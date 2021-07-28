@@ -10,15 +10,21 @@ import (
 
 //Configuration is
 type Configuration struct {
+	Routes      []SystemRoutes
 	Tables      []interface{}
-	Routes      []Routes
-	Variables   []ConfigVars
+	Variables   []SystemConfigVars
+	Cronjobs    []Cronjob
 	BeforeSetup func(db *gorm.DB)
 	AfterSetup  func(db *gorm.DB)
 }
 
+type Cronjob struct {
+	Timer   string
+	Command func()
+}
+
 //Routes is
-type Routes struct {
+type SystemRoutes struct {
 	Name        string          // Nombre del permiso
 	Description string          // Descripcion corta de lo que hace la ruta
 	Category    string          // Categoria de la ruta de separado por >
@@ -29,7 +35,7 @@ type Routes struct {
 }
 
 //Permissions is
-type Permissions struct {
+type SystemPermissions struct {
 	Pid         uuid.UUID `gorm:"primaryKey;type:uuid"`
 	Name        string    // Nombre del permiso
 	Description string    // Descripcion corta de lo que hace la ruta
@@ -40,7 +46,7 @@ type Permissions struct {
 }
 
 //Roles is
-type Roles struct {
+type SystemRoles struct {
 	Rid            uuid.UUID `gorm:"primaryKey;type:uuid"`
 	Name           string    `gorm:"type:varchar(25)"`
 	Description    string    `gorm:"type:varchar(70)"`
@@ -50,7 +56,7 @@ type Roles struct {
 }
 
 //ConfigVars is
-type ConfigVars struct {
+type SystemConfigVars struct {
 	ID          uint64 `gorm:"primaryKey"`
 	Description string
 	Key         string
@@ -59,7 +65,7 @@ type ConfigVars struct {
 }
 
 //Agents is
-type Agents struct {
+type SystemAgents struct {
 	Aid       uuid.UUID `gorm:"primaryKey;type:uuid"`
 	Uid       uuid.UUID `gorm:"unique;type:uuid"`
 	Rid       uuid.UUID `gorm:"type:uuid"`

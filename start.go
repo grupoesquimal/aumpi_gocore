@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	cors "github.com/itsjamie/gin-cors"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/robfig/cron/v3"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -60,6 +61,15 @@ func Start(cfg Configuration) {
 		} else if route.Method == "DELETE" {
 			r.DELETE(route.Path, route.Function)
 		}
+	}
+
+	if len(cfg.Cronjobs) > 0 {
+		log.Debug("Instanciando Cronjobs")
+		c := cron.New()
+		for _, job := range cfg.Cronjobs {
+			c.AddFunc(job.Timer, job.Command)
+		}
+		c.Start()
 	}
 
 	log.Debug("Iniciando API")

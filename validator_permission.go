@@ -22,15 +22,15 @@ func PermissionsValidator() gin.HandlerFunc {
 		uid := c.MustGet("uid").(string)
 
 		// OBTENER DATOS DEL AGENTE
-		var agent Agents
+		var agent SystemAgents
 		db.First(&agent, "uid = ?", uid)
 
 		// OBTENER ROL DEL AGENTE
-		var role Roles
+		var role SystemRoles
 		db.First(&role, "rid = ?", agent.Rid)
 
 		// OBTENER PERMISO DE LA RUTA
-		var permission Permissions
+		var permission SystemPermissions
 		res_perm := db.First(&permission, "path = ? AND method = ?", c.FullPath(), c.Request.Method)
 
 		if res_perm.Error != nil {

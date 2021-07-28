@@ -65,7 +65,7 @@ func JWTValidator() gin.HandlerFunc {
 			}
 
 			// VALIDATE IF IS AGENT
-			if db.First(&Agents{}, "uid = ?", claims.Subject).RowsAffected == 0 {
+			if db.First(&SystemAgents{}, "uid = ?", claims.Subject).RowsAffected == 0 {
 				c.AbortWithStatusJSON(401, gin.H{"success": false, "message": "No autorizado como agente"})
 				return
 			}
