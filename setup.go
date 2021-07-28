@@ -73,6 +73,7 @@ func createEnvVars(env []ConfigVars, db *gorm.DB) {
 				Key:         _var.Key,
 				Value:       _var.Value,
 				Description: _var.Description,
+				Type:        _var.Type,
 			})
 		}
 	}
