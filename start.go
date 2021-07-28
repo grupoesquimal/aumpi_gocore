@@ -67,7 +67,9 @@ func Start(cfg Configuration) {
 		log.Debug("Instanciando Cronjobs")
 		c := cron.New()
 		for _, job := range cfg.Cronjobs {
-			c.AddFunc(job.Timer, job.Command)
+			c.AddFunc(job.Timer, func() {
+				job.Command(db)
+			})
 		}
 		c.Start()
 	}

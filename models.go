@@ -20,7 +20,7 @@ type Configuration struct {
 
 type Cronjob struct {
 	Timer   string
-	Command func()
+	Command func(db *gorm.DB)
 }
 
 //Routes is
