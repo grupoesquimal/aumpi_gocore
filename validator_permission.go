@@ -7,6 +7,15 @@ import (
 	"gorm.io/gorm"
 )
 
+func Contains(a []string, x string) bool {
+	for _, n := range a {
+		if x == n {
+			return true
+		}
+	}
+	return false
+}
+
 // PermissionsValidator permite validar el acceso en base a los permisos
 func PermissionsValidator() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -39,7 +48,7 @@ func PermissionsValidator() gin.HandlerFunc {
 		}
 
 		// VALIDAR SI ES UN PERMISO DE TIPO ROOT
-		if role.Permissions == "*" {
+		if Contains(role.Permissions, "*") {
 			c.Next()
 			return
 		}
@@ -51,7 +60,7 @@ func PermissionsValidator() gin.HandlerFunc {
 		}
 
 		// VALIDAR SI EL USUARIO TIENE ACCESO A LA RUTA SOLICITADA
-		if strings.Contains(role.Permissions, permission.Pid.String()) {
+		if Contains(role.Permissions, permission.Pid.String()) {
 			c.Next()
 			return
 		}

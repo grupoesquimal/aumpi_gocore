@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/lib/pq"
 	"gorm.io/gorm"
 )
 
@@ -45,11 +46,11 @@ type SystemPermissions struct {
 
 //Roles is
 type SystemRoles struct {
-	Rid            uuid.UUID `gorm:"primaryKey;type:uuid"`
-	Name           string    `gorm:"type:varchar(25)"`
-	Description    string    `gorm:"type:varchar(70)"`
-	Permissions    string    `gorm:"type:text"`
-	PermissionsWeb string    `gorm:"type:text"`
+	Rid            uuid.UUID      `gorm:"primaryKey;type:uuid"`
+	Name           string         `gorm:"type:varchar(25)"`
+	Description    string         `gorm:"type:varchar(70)"`
+	Permissions    pq.StringArray `gorm:"type:text[]"`
+	PermissionsWeb pq.StringArray `gorm:"type:text[]"`
 	Editable       bool
 }
 
