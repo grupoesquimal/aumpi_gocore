@@ -68,6 +68,7 @@ type SystemAgents struct {
 	Aid       uuid.UUID `gorm:"primaryKey;type:uuid"`
 	Uid       uuid.UUID `gorm:"unique;type:uuid"`
 	Rid       uuid.UUID `gorm:"type:uuid"`
+	Data      JSONB     `gorm:"type:jsonb"`
 	CreatedAt time.Time `gorm:"autoCreateTime"`
 	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 }
