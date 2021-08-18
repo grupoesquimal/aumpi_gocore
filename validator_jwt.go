@@ -45,7 +45,7 @@ func JWTValidator() gin.HandlerFunc {
 			token, errParseVerify := jwt.ParseAndVerifyString(tokenString, verifier)
 			if errParseVerify != nil {
 				fmt.Println(errParseVerify)
-				c.AbortWithStatusJSON(401, gin.H{"success": false, "message": "No se pudo verificar"})
+				c.AbortWithStatusJSON(401, gin.H{"success": false, "message": "No se pudo verificar", "error": errParseVerify})
 				return
 			}
 
@@ -54,7 +54,7 @@ func JWTValidator() gin.HandlerFunc {
 			errClaims := json.Unmarshal(token.RawClaims(), &claims)
 			if errClaims != nil {
 				fmt.Println(errClaims)
-				c.AbortWithStatusJSON(401, gin.H{"success": false, "message": "No se pudo verificar"})
+				c.AbortWithStatusJSON(401, gin.H{"success": false, "message": "No se pudo verificar", "error": errClaims})
 				return
 			}
 
