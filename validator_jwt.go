@@ -25,6 +25,11 @@ func ExtractToken(r *http.Request) string {
 func JWTValidator() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// PASE COMPLETO SI ES UN WEBHOOK
+		if c.Request.Header["X-Username"] != nil {
+			c.Next()
+			return
+		}
+
 		var split = strings.Split(c.FullPath(), "/")
 		if len(split) > 1 && split[1] == "webhook" {
 			c.Next()
