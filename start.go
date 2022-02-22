@@ -46,7 +46,7 @@ func Start(cfg Configuration) {
 	// Validador de JWT
 	r.Use(JWTValidator())
 	// Validador de permisos
-	r.Use(PermissionsValidator())
+	//r.Use(PermissionsValidator())
 
 	// Agregar rutas dinamicamente
 	for _, route := range cfg.Routes {
