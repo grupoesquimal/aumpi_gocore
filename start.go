@@ -44,7 +44,7 @@ func Start(cfg Configuration) {
 	})
 
 	// Validador de JWT
-	r.Use(JWTValidator())
+	//r.Use(JWTValidator())
 	// Validador de permisos
 	//r.Use(PermissionsValidator())
 
